@@ -13,8 +13,16 @@
 // You will need an additional `employees` property that holds an array of all
 // `Employee`s assigned to the `Manager`.
 
-const employees = require('./employee')
+const employee = require('./employee')
 
-class Manager {
+class Manager extends employee {
+    constructor(name, salary, title, manager, employees) {
+        super(name, salary, title, manager)
+        this.employees = []
+    }
+    addEmployee(employee) {
+        this.employees.push(employee)
+    }
 
 }
+module.exports = Manager
