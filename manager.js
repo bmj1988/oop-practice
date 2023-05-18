@@ -23,6 +23,30 @@ class Manager extends employee {
     addEmployee(employee) {
         this.employees.push(employee)
     }
+    // calculateBonus(multiplier) {
+    //     return this._totalSubSalary(this.employees) * multiplier
+    // }
+    calculateBonus(multiplier) {
+        return (this.salary + this._totalSubSalary()) * multiplier
+    }
+// calculate bonus by summing all salaries of employees in .employees
+// if employee is manager, sum the salaries of all of that manager's .employees as well
+// _totalSubSalary(arr=[]) {
+//     if (arr.length === 0) return 0
+//     return arr[0].salary += this._totalSubSalary(arr.slice(1))
+// }
+// }
 
+ _totalSubSalary() {
+    let sum = 0
+    this.employees.forEach(el => {
+        sum += el.salary
+        if (el instanceof Manager) sum += el._totalSubSalary()
+
+    })
+    return sum
 }
+}
+//
+//  }}
 module.exports = Manager
